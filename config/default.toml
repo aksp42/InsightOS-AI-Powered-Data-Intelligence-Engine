@@ -1,0 +1,21 @@
+# Non-secret application settings for InsightOS.
+#
+# Precedence (highest first): init kwargs > environment variables (INSIGHTOS_*)
+# > .env file > this file > built-in defaults.
+#
+# Do NOT put API keys or other secrets here. Use environment variables / .env.
+
+runs_dir = "runs"
+log_level = "INFO"
+log_to_file = true
+
+# LLM provider is pluggable and not finalized; leave unset until selected.
+# llm_provider = ""
+# llm_model = ""
+llm_temperature = 0.0
+
+# Privacy: send only the minimum evidence to an external LLM, never the full
+# dataset by default, and mask sensitive values. Placeholder defaults, to be
+# refined during the LLM-reasoning phase.
+llm_max_samples_per_column = 10
+privacy_mask_sensitive_values = true
