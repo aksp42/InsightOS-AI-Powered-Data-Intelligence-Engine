@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -55,12 +56,16 @@ def test_run_store_can_be_built_from_settings(tmp_path: Path) -> None:
 
 
 def test_python_m_insightos_runs(repo_root: Path) -> None:
+    env = {"PYTHONPATH": str(repo_root / "src"), "PATH": ""}
+    # Windows needs SYSTEMROOT to initialise Winsock (asyncio/socket imports); absent elsewhere.
+    if "SYSTEMROOT" in os.environ:
+        env["SYSTEMROOT"] = os.environ["SYSTEMROOT"]
     result = subprocess.run(
         [sys.executable, "-m", "insightos", "--version"],
         capture_output=True,
         text=True,
         check=False,
-        env={"PYTHONPATH": str(repo_root / "src"), "PATH": ""},
+        env=env,
     )
     assert result.returncode == 0, result.stderr
     assert insightos.__version__ in result.stdout
