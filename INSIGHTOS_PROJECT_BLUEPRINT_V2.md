@@ -487,11 +487,12 @@ The evaluation harness is built incrementally from early phases onward, not only
 ## 15. Current Status
 
 - Core architecture and V2 decisions are approved for development planning.
-- Phase 1 (project foundation) is implemented: packaging, configuration, Pydantic schema
-  foundation, run/artifact store, logging, test foundation, `evaluation/` scaffold. The real
-  pytest/mypy run is still pending (dependencies could not be installed in the build
-  environment).
-- No Phase 2 or later functionality exists yet.
+- Phase 1 (project foundation) is implemented and accepted: packaging, configuration, Pydantic
+  schema foundation, run/artifact store, logging, test foundation, `evaluation/` scaffold. It was
+  verified by GitHub Actions on Windows with Python 3.11.9 and 3.13.17 (70 tests, Ruff, mypy
+  strict), at commit `56f049c`.
+- Phase 2 (data ingestion and profiling) is in progress. No Phase 3 or later functionality
+  exists yet.
 
 ## 16. Open Items
 
